@@ -1,0 +1,64 @@
+<h1>Sessions</h1>
+
+<p>
+A session usually consists of a hash of values and a session id, usually a 32-character string, to identify the hash. Every cookie sent to the client"s browser includes the session id. And the other way round: the browser will send it to the server on every request from the client. In Rails you can save and retrieve values using the session method.
+</p>
+
+<p>
+  <b>Example:</b>
+  <br>
+  Select name, alpha or code on Listing Countries and will be saved on the session. 
+  <br>
+  Press "Reset" if you want to erase the entire session.
+  <br>
+  Press "Remove"  if  to clear a session value
+</p>
+
+<ul>
+  <li>
+    Session Name:
+    <%= session[:name] %>
+    -
+    <%= link_to "Remove" , remove_path(:name) %>
+  </li>
+  <li>
+    Session Alpha:
+    <%=  session[:alpha] %>
+    -
+    <%= link_to "Remove" , remove_path(:alpha) %>
+  </li>
+  <li>
+    Session Code:
+    <%=  session[:code] %> 
+    - 
+    <%= link_to "Remove" , remove_path(:code) %>
+  </li>
+</ul>
+
+<%= link_to "Reset" , reset_path %>
+
+
+
+<h1>Listing countries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Alpha</th>
+      <th>Code</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @countries.each do |country| %>
+      <tr>
+        <td><%= link_to country.name , name_path(country.id) %></td>
+        <td><%= link_to country.alpha , alpha_path(country.id) %></td>
+        <td><%= link_to country.code , code_path(country.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
